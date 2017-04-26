@@ -286,7 +286,7 @@ and open the template in the editor.
        <div style="text-align: center;">
        <FONT FACE="impact" SIZE="10" COLOR="black"> Nueva Venta </FONT><br>
                 <br>
-                    <img style="width: 218px; height: 218px;"src="ventas.png"><br>
+                    <img style="width: 218px; height: 218px;"src="NuevaVenta.png"><br>
                     <br>ID Factura:<input name="IDProvedor">
                     <br>
                     <br>

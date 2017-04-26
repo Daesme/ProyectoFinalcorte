@@ -33,7 +33,7 @@ public class ProductoDao {
     
     public ProductoDao() throws FileNotFoundException {
        
-        this.productoDB = new RandomAccessFile("C:\\Users\\USER\\Desktop\\producto.txt", "rw");
+        this.productoDB = new RandomAccessFile("C:\\Users\\Labing\\Desktop\\producto.txt", "rw");
     }
   
     public boolean insertar(Producto producto) throws IOException {
