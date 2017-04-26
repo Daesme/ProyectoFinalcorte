@@ -248,7 +248,7 @@ and open the template in the editor.
                 </li>
                 <li><a href="" class="botonNav">Provedores</a>
                 <ul>
-                        <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
+                        <li><a href="NuevaVenta.jsp" class="botonNav">Nuevo Provedor</a></li>
                         <li><a href="BusquedaProvedor.jsp" class="botonNav">Busqueda Provedor</a></li>
                         <li><a href=".jsp" class="botonNav">Lista de Provedores</a></li>                        
                     </ul>
