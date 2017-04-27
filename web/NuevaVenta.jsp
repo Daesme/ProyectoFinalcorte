@@ -224,7 +224,7 @@ and open the template in the editor.
         <header>
             <!--Encabezado-->
             <div class="col-sm-4" id="header">
-                <img class="img-rounded" src="gg.jpg" alt="NOT FOUND">
+                <img class="img-rounded" src="Imagenes/gg.jpg" alt="NOT FOUND">
             </div>
             <div class="col-sm-8" id="titulo1">
  <font face="Comic Sans MS,arial,verdana" size=20px color="white" style="position: relative; left: 0px; top: 40px">
@@ -286,7 +286,7 @@ and open the template in the editor.
        <div style="text-align: center;">
        <FONT FACE="impact" SIZE="10" COLOR="black"> Nueva Venta </FONT><br>
                 <br>
-                    <img style="width: 218px; height: 218px;"src="NuevaVenta.png"><br>
+                    <img style="width: 218px; height: 218px;"src="Imagenes/NuevaVenta.png"><br>
                     <br>ID Factura:<input name="IDProvedor">
                     <br>
                     <br>

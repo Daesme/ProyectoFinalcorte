@@ -11,11 +11,11 @@ package Modelo;
  */
 public class Producto {
     private int id;
-    private char[] descripcion;
+    private String descripcion;
     private int cantidad;
     private int valor;
 
-    public Producto(int id, char[] descripcion, int cantidad, int valor) {
+    public Producto(int id, String descripcion, int cantidad, int valor) {
         this.id = id;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
@@ -30,11 +30,11 @@ public class Producto {
         this.id = id;
     }
 
-    public char[] getDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(char[] descripcion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 

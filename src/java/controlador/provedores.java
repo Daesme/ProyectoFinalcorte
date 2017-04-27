@@ -5,7 +5,6 @@
  */
 package controlador;
 
-import Modelo.ArbolProvedor;
 import Modelo.Provedor;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Labing
  */
 public class provedores extends HttpServlet {
-   ProvedorDAO prove;
-    ArbolProvedor arbol = new ArbolProvedor();
+   
+    ProvedorDAO prove;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,16 +35,13 @@ public class provedores extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             int id = Integer.valueOf(request.getParameter("IDProvedor"));
-            char[] nombre2 = request.getParameter("NombreProvedor").toCharArray();
-            char[] apellido2 = request.getParameter("ApellidoProvedor").toCharArray();
+            String nombre2 = request.getParameter("NombreProvedor");
+            String apellido2 = request.getParameter("ApellidoProvedor");
             int tel = Integer.valueOf(request.getParameter("Telefono"));
 
             /* TODO output your page here. You may use following sample code. */
-                Provedor estudiante = new Provedor(id, nombre2, apellido2, tel);
                 prove = new ProvedorDAO();
-                prove.insertar(estudiante);
-                prove.listarTodo();
-                prove.destructor();
+                ProvedorDAO.Insetar(id,nombre2,apellido2,tel);
         }
     }
 

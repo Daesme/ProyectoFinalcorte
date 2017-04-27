@@ -18,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Labing
  */
 public class empleados extends HttpServlet {
-    EmpleadoDao cur;
+
+    EmpleadosDAO cur;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,16 +35,13 @@ public class empleados extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           int codigo = Integer.valueOf(request.getParameter("Codigo"));
-            char[] nombre2 = request.getParameter("NombreEmpleado").toCharArray();
+            int codigo = Integer.valueOf(request.getParameter("Codigo"));
+            String nombre2 = request.getParameter("NombreEmpleado");
             int dur = Integer.valueOf(request.getParameter("Duracion"));
 
             /* TODO output your page here. You may use following sample code. */
-                Empleado curso = new Empleado(codigo, nombre2,dur);
-                cur = new EmpleadoDao();
-                cur.insertar(curso);
-                cur.listarTodo();
-                cur.destructor();
+            Empleado curso = new Empleado(codigo, nombre2, dur);
+            
         }
     }
 

@@ -10,12 +10,12 @@ package Modelo;
  * @author crist
  */
 public class Empleado {
-    int codigo;
-    char[] nombre;
-    int duracion;
-    int pago;
+    private int codigo;
+    private String nombre;
+    private int duracion;
+    private int pago;
 
-    public Empleado(int codigo, char[] nombre, int duracion) {
+    public Empleado(int codigo, String nombre, int duracion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.duracion = duracion;
@@ -30,11 +30,11 @@ public class Empleado {
         this.codigo = codigo;
     }
 
-    public char[] getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(char[] nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 

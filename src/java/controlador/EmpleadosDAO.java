@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import static controlador.ProductosDAO.connection;
+import static controlador.ProductosDAO.preparedStmt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,14 +18,14 @@ import util.Conexion;
  *
  * @author crist
  */
-public class ProvedorDAO {
+public class EmpleadosDAO {
     public static Connection connection;
     public static PreparedStatement preparedStmt;
     
-    public static void Insetar(int idP, String Nombre, String apellido, int tel) {
+    public static void Insetar(int idP, String empleadoName, int duracion, int pago) {
 
         Conexion.Conexion();
-        String query = " insert into Proveedor (idProvedor,ProvedorName,ProveedorAp,tel)"
+        String query = " insert into Empleado (idEmpleado, empleadoName,duracion,pago)"
                 + " values (?, ?, ?, ?)";
 
         preparedStmt = null;
@@ -31,9 +33,9 @@ public class ProvedorDAO {
         try {
             preparedStmt = connection.prepareStatement(query);
             preparedStmt.setInt(1, idP);
-            preparedStmt.setString(2, Nombre);
-            preparedStmt.setString(3, apellido);
-            preparedStmt.setInt(4, tel);
+            preparedStmt.setString(2, empleadoName);
+            preparedStmt.setInt(3, duracion);
+            preparedStmt.setInt(4, pago);
             preparedStmt.execute();
 
         } catch (SQLException e) {
@@ -41,19 +43,18 @@ public class ProvedorDAO {
         }
     }
 
-    public static void Actualizar(int id, String nuevoNombre) {
+    public static void ActualizarA(int id, int NuevoValor) {
 
         Conexion.Conexion();
 
         preparedStmt = null;
 
         try {
-            
-            String query = "update Proveedor set ProvedorName = ? where idProvedor = ?";
+
+            String query = "update Empleado set pago = ? where idEmpleado = ?";
             preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setString(1, nuevoNombre);
+            preparedStmt.setInt(1, NuevoValor);
             preparedStmt.setInt(2, id);
-            preparedStmt.execute();
 
         } catch (SQLException e) {
             System.out.println("Failed to make update!");
@@ -61,11 +62,11 @@ public class ProvedorDAO {
         }
     }
 
-    public static void Listar() {
+    public static void ListarA() {
 
         Conexion.Conexion();
 
-        String query = "SELECT * FROM Proveedor";
+        String query = "SELECT * FROM Empleados";
 
         try {
             Statement st = connection.createStatement();
@@ -73,11 +74,10 @@ public class ProvedorDAO {
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
-                int codigoProveedor = rs.getInt("idProvedor");
-                String Nombre = rs.getString("ProvedorName");
-                String Apellido = rs.getString("ProveedorAp");
-                int tel = rs.getInt("tel");
-                
+                int idEmpleado = rs.getInt("idEmpleado");
+                String empleadoName = rs.getString("empleadoName");
+                int duracion = rs.getInt("duracion");
+                int pago = rs.getInt("pago");
             }
             st.close();
 
@@ -93,14 +93,14 @@ public class ProvedorDAO {
         }
     }
 
-    public static void Borrar(int id) {
+    public static void BorrarA(int id) {
 
         Conexion.Conexion();
 
         preparedStmt = null;
 
         try {
-            String query = "delete from Proveedor where idProvedor = ?";
+            String query = "delete from Empleado where idEmpleado = ?";
             preparedStmt = connection.prepareStatement(query);
             preparedStmt.setInt(1, id);
             preparedStmt.execute();
@@ -110,14 +110,14 @@ public class ProvedorDAO {
         }
     }
     
-    public static void Buscar(int id){
+        public static void Buscar(int id){
         
         Conexion.Conexion();
         
         preparedStmt = null;
         
         try {
-            String query = "select * from Proveedor where idProveedor = ?";
+            String query = "select * from Empleado where idEmpleado = ?";
             preparedStmt = connection.prepareStatement(query);
             preparedStmt.setInt(1, id);
             
@@ -125,16 +125,15 @@ public class ProvedorDAO {
 
             ResultSet rs = st.executeQuery(query);
             
-            while (rs.next()) {
-                int codigoArtista = rs.getInt("idProvedor");
-                String Nombre = rs.getString("ProvedorName");
-                String Apellido = rs.getString("ProveedorAp");
-                int tel = rs.getInt("tel");           
+              while (rs.next()) {
+                int idEmpleado = rs.getInt("idEmpleado");
+                String empleadoName = rs.getString("empleadoName");
+                int duracion = rs.getInt("duracion");
+                int pago = rs.getInt("pago");
             }
             st.close();
+            
         } catch (Exception e) {
         }
     }
-    
-    
 }

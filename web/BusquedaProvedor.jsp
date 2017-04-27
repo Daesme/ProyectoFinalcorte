@@ -217,7 +217,7 @@
         <header>
             <!--Encabezado-->
             <div class="col-sm-4" id="header">
-                <img class="img-rounded" src="gg.jpg" alt="NOT FOUND">
+                <img class="img-rounded" src="Imagenes/gg.jpg" alt="NOT FOUND">
             </div>
             <div class="col-sm-8" id="titulo1">
  <font face="Comic Sans MS,arial,verdana" size=20px color="white" style="position: relative; left: 0px; top: 40px">

@@ -11,11 +11,11 @@ package Modelo;
  */
 public class Provedor {
     private int id;
-    private char[] nombre;
-    private char[] apellido;
+    private String nombre;
+    private String apellido;
     private int telefono;
 
-    public Provedor(int id, char[] nombre, char[] apellido, int telefono) {
+    public Provedor(int id, String nombre, String apellido, int telefono) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -30,19 +30,19 @@ public class Provedor {
         this.id = id;
     }
 
-    public char[] getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(char[] nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public char[] getApellido() {
+    public String getApellido() {
         return apellido;
     }
 
-    public void setApellido(char[] apellido) {
+    public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
