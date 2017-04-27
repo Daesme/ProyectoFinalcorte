@@ -6,9 +6,6 @@
 package controlador;
 
 import Modelo.Empleado;
-import Modelo.Producto;
-import static controlador.ProductosDAO.connection;
-import static controlador.ProductosDAO.preparedStmt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,125 +19,107 @@ import util.Conexion;
  * @author crist
  */
 public class EmpleadosDAO {
-    public static Connection connection;
-    public static PreparedStatement preparedStmt;
-    
-    public static void Insetar(int idP, String empleadoName, int duracion, int pago) {
 
-        Conexion.Conexion();
-        String query = " insert into Empleado (idEmpleado, empleadoName,duracion,pago)"
+    private Connection conexion;
+
+    public EmpleadosDAO() {
+        Conexion db = Conexion.getConexion();
+        this.conexion = db.getConnection();
+    }
+
+    public void Insetar(int idP, String Nombre, int apellido, int tel) throws SQLException {
+
+        String query = " insert into Empleado (idEmpleado,empleadoName,duracion,pago)"
                 + " values (?, ?, ?, ?)";
 
-        preparedStmt = null;
+        PreparedStatement statement
+                = this.conexion.prepareStatement(query);
 
         try {
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, idP);
-            preparedStmt.setString(2, empleadoName);
-            preparedStmt.setInt(3, duracion);
-            preparedStmt.setInt(4, pago);
-            preparedStmt.execute();
+            statement.setInt(1, idP);
+            statement.setString(2, Nombre);
+            statement.setInt(3, apellido);
+            statement.setInt(4, tel);
+            statement.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void ActualizarA(int id, int NuevoValor) {
+    public LinkedList<Empleado> Listar() {
 
-        Conexion.Conexion();
-
-        preparedStmt = null;
-
-        try {
-
-            String query = "update Empleado set pago = ? where idEmpleado = ?";
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, NuevoValor);
-            preparedStmt.setInt(2, id);
-
-        } catch (SQLException e) {
-            System.out.println("Failed to make update!");
-            e.printStackTrace();
-        }
-    }
-
-    public static LinkedList<Empleado> ListarA() {
-
-        Conexion.Conexion();
         LinkedList<Empleado> a = new LinkedList<>();
-        String query = "SELECT * FROM Empleados";
+
+        String query = "SELECT * FROM Empleado";
 
         try {
-            Statement st = connection.createStatement();
+           Statement statement =
+                    this.conexion.createStatement();
 
-            ResultSet rs = st.executeQuery(query);
+            ResultSet rs = 
+                    statement.executeQuery(query);
 
             while (rs.next()) {
-                int idEmpleado = rs.getInt("idEmpleado");
-                String empleadoName = rs.getString("empleadoName");
-                int duracion = rs.getInt("duracion");
-                int pago = rs.getInt("pago");
-                
-                Empleado emp = new Empleado(idEmpleado, empleadoName, duracion,pago);
-                a.add(emp);
+                int codigoProducto = rs.getInt("idEmpleado");
+                String descripcion = rs.getString("empleadoName");
+                int cantidad = rs.getInt("duracion");
+                int tel = rs.getInt("pago");
+
+                Empleado pro = new Empleado(codigoProducto, descripcion, cantidad, tel);
+                a.add(pro);
             }
-            st.close();
+            System.out.println(a);
 
         } catch (SQLException e) {
             System.out.println("Failed to make update!");
             e.printStackTrace();
         }
 
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         return a;
     }
 
-    public static void BorrarA(int id) {
-
-        Conexion.Conexion();
-
-        preparedStmt = null;
-
+    public void Borrar(int id) {
         try {
             String query = "delete from Empleado where idEmpleado = ?";
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, id);
-            preparedStmt.execute();
+            
+            PreparedStatement statement
+                = this.conexion.prepareStatement(query);
+            
+            statement.setInt(1, id);
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("Failed to make update!");
             e.printStackTrace();
         }
     }
-    
-        public static void Buscar(int id){
-        
-        Conexion.Conexion();
-        
-        preparedStmt = null;
-        
+
+    public Empleado Buscar(int id) {
+        Empleado pro = null;
+
         try {
-            String query = "select * from Empleado where idEmpleado = ?";
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, id);
-            
-            Statement st = connection.createStatement();
+            String query = "SELECT * FROM Empleado where idEmpleado = ?";
+            PreparedStatement statement
+                = this.conexion.prepareStatement(query);
+
+            statement.setInt(1, id);
+            Statement st = this.conexion.createStatement();
 
             ResultSet rs = st.executeQuery(query);
-            
-              while (rs.next()) {
-                int idEmpleado = rs.getInt("idEmpleado");
-                String empleadoName = rs.getString("empleadoName");
-                int duracion = rs.getInt("duracion");
-                int pago = rs.getInt("pago");
+
+            if (rs.next()) {
+                int codigoProveedor = rs.getInt("idEmpleado");
+                String Nombre = rs.getString("empleadoName");
+                int Apellido = rs.getInt("duracion");
+                int tel = rs.getInt("pago");
+                System.out.format("%s, %s, %s, $s\n", codigoProveedor, Nombre, Apellido, tel);
+                pro = new Empleado(codigoProveedor, Nombre, Apellido, tel);
             }
-            st.close();
-            
+
         } catch (Exception e) {
         }
+        return pro;
     }
+
 }
+

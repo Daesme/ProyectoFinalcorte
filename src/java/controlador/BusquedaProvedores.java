@@ -35,7 +35,9 @@ public class BusquedaProvedores extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String id = request.getParameter("id");
-            Provedor pro = ProvedorDAO.Buscar(Integer.parseInt(id));
+            ProvedorDAO dao=new ProvedorDAO();
+            Provedor pro = null;
+            pro = dao.Buscar(Integer.parseInt(id));
             
             RequestDispatcher dispacher =request.getRequestDispatcher("BusquedaProvedor.jsp");
             

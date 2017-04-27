@@ -7,7 +7,6 @@ package controlador;
 
 import Modelo.Producto;
 import Modelo.Provedor;
-import static controlador.ProductosDAO.connection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,62 +21,46 @@ import util.Conexion;
  */
 public class ProvedorDAO {
 
-    public static Connection connection;
-    public static PreparedStatement preparedStmt;
+    private final Connection conexion;
 
-    public static void Insetar(int idP, String Nombre, String apellido, int tel) {
+    public ProvedorDAO() {
+        Conexion db = Conexion.getConexion();
+        this.conexion = db.getConnection();
+    }
 
-        Conexion.Conexion();
+    public boolean Insetar(int idP, String Nombre, String apellido, int tel) throws SQLException {
+boolean resultado = false;
         String query = " insert into Proveedor (idProvedor,ProvedorName,ProveedorAp,tel)"
                 + " values (?, ?, ?, ?)";
 
-        preparedStmt = null;
+        PreparedStatement statement= this.conexion.prepareStatement(query);
 
         try {
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, idP);
-            preparedStmt.setString(2, Nombre);
-            preparedStmt.setString(3, apellido);
-            preparedStmt.setInt(4, tel);
-            preparedStmt.execute();
-
+            statement.setInt(1, idP);
+            statement.setString(2, Nombre);
+            statement.setString(3, apellido);
+            statement.setInt(4, tel);
+            statement.execute();
+resultado = statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return resultado;
     }
 
-    public static void Actualizar(int id, String nuevoNombre) {
+    public LinkedList<Provedor> Listar() {
 
-        Conexion.Conexion();
-
-        preparedStmt = null;
-
-        try {
-
-            String query = "update Proveedor set ProvedorName = ? where idProvedor = ?";
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setString(1, nuevoNombre);
-            preparedStmt.setInt(2, id);
-            preparedStmt.execute();
-
-        } catch (SQLException e) {
-            System.out.println("Failed to make update!");
-            e.printStackTrace();
-        }
-    }
-
-    public static LinkedList<Provedor> Listar() {
-
-        Conexion.Conexion();
         LinkedList<Provedor> a = new LinkedList<>();
 
         String query = "SELECT * FROM Proveedor";
 
         try {
-            Statement st = connection.createStatement();
+           Statement statement =
+                    this.conexion.createStatement();
 
-            ResultSet rs = st.executeQuery(query);
-           
+            ResultSet rs = 
+                    statement.executeQuery(query);
+
             while (rs.next()) {
                 int codigoProveedor = rs.getInt("idProvedor");
                 String Nombre = rs.getString("ProvedorName");
@@ -88,61 +71,49 @@ public class ProvedorDAO {
                 a.add(pro);
             }
             System.out.println(a);
-            st.close();
 
         } catch (SQLException e) {
             System.out.println("Failed to make update!");
             e.printStackTrace();
         }
-
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
         return a;
     }
 
-    public static void Borrar(int id) {
-
-        Conexion.Conexion();
-
-        preparedStmt = null;
-
+    public void Borrar(int id) {
         try {
             String query = "delete from Proveedor where idProvedor = ?";
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, id);
-            preparedStmt.execute();
+            
+            PreparedStatement statement
+                = this.conexion.prepareStatement(query);
+            statement.setInt(1, id);
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("Failed to make update!");
             e.printStackTrace();
         }
     }
 
-    public static Provedor Buscar(int id) {
-
-        Conexion.Conexion();
+    public Provedor Buscar(int id) {
         Provedor pro = null;
 
         try {
             String query = "SELECT * FROM Proveedor where idProveedor = ?";
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, id);
-            Statement st = connection.createStatement();
+            PreparedStatement statement
+                = this.conexion.prepareStatement(query);
+            statement.setInt(1, id);
+            Statement st = this.conexion.createStatement();
 
             ResultSet rs = st.executeQuery(query);
-                
-                if (rs.next()) {
-                    int codigoProveedor = rs.getInt("idProvedor");
-                    String Nombre = rs.getString("ProvedorName");
-                    String Apellido = rs.getString("ProveedorAp");
-                    int tel = rs.getInt("tel");
-                    System.out.format("%s, %s, %s, $s\n", codigoProveedor, Nombre, Apellido, tel);
-                    pro = new Provedor(codigoProveedor, Nombre, Apellido, tel);
-                }
-            
+
+            if (rs.next()) {
+                int codigoProveedor = rs.getInt("idProvedor");
+                String Nombre = rs.getString("ProvedorName");
+                String Apellido = rs.getString("ProveedorAp");
+                int tel = rs.getInt("tel");
+                System.out.format("%s, %s, %s, $s\n", codigoProveedor, Nombre, Apellido, tel);
+                pro = new Provedor(codigoProveedor, Nombre, Apellido, tel);
+            }
+
         } catch (Exception e) {
         }
         return pro;

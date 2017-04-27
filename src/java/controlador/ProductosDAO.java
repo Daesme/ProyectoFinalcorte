@@ -6,8 +6,6 @@
 package controlador;
 
 import Modelo.Producto;
-import static controlador.ProvedorDAO.connection;
-import static controlador.ProvedorDAO.preparedStmt;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,125 +19,106 @@ import util.Conexion;
  * @author crist
  */
 public class ProductosDAO {
-    public static Connection connection;
-    public static PreparedStatement preparedStmt;
-    
-    public static void Insetar(int idP, String descripcion, int cantidad, int valorU) {
 
-        Conexion.Conexion();
+    private Connection conexion;
+
+    public ProductosDAO() {
+        Conexion db = Conexion.getConexion();
+        this.conexion = db.getConnection();
+    }
+
+    public void Insetar(int idP, String Nombre, int apellido, int tel) throws SQLException {
+
         String query = " insert into Producto (idproducto,descripcion,cantidad,valor)"
                 + " values (?, ?, ?, ?)";
 
-        preparedStmt = null;
+        PreparedStatement statement
+                = this.conexion.prepareStatement(query);
 
         try {
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, idP);
-            preparedStmt.setString(2, descripcion);
-            preparedStmt.setInt(3, cantidad);
-            preparedStmt.setInt(4, valorU);
-            preparedStmt.execute();
+            statement.setInt(1, idP);
+            statement.setString(2, Nombre);
+            statement.setInt(3, apellido);
+            statement.setInt(4, tel);
+            statement.execute();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void ActualizarA(int id, int NuevoValor) {
+    public LinkedList<Producto> Listar() {
 
-        Conexion.Conexion();
-
-        preparedStmt = null;
-
-        try {
-
-            String query = "update artist set valor = ? where idproducto = ?";
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, NuevoValor);
-            preparedStmt.setInt(2, id);
-
-        } catch (SQLException e) {
-            System.out.println("Failed to make update!");
-            e.printStackTrace();
-        }
-    }
-
-    public static LinkedList<Producto> ListarA() {
-
-        Conexion.Conexion();
         LinkedList<Producto> a = new LinkedList<>();
+
         String query = "SELECT * FROM Producto";
 
         try {
-            Statement st = connection.createStatement();
+           Statement statement =
+                    this.conexion.createStatement();
 
-            ResultSet rs = st.executeQuery(query);
+            ResultSet rs = 
+                    statement.executeQuery(query);
 
             while (rs.next()) {
-                int idProducto = rs.getInt("idproducto");
-                String descrip = rs.getString("descripcion");
+                int codigoProducto = rs.getInt("idproducto");
+                String descripcion = rs.getString("descripcion");
                 int cantidad = rs.getInt("cantidad");
-                int valor = rs.getInt("valor");
-                
-                Producto pro = new Producto(idProducto, descrip, cantidad, valor);
+                int tel = rs.getInt("valor");
+
+                Producto pro = new Producto(codigoProducto, descripcion, cantidad, tel);
                 a.add(pro);
             }
-            st.close();
+            System.out.println(a);
 
         } catch (SQLException e) {
             System.out.println("Failed to make update!");
             e.printStackTrace();
         }
 
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        
         return a;
     }
 
-    public static void BorrarA(int id) {
-
-        Conexion.Conexion();
-
-        preparedStmt = null;
-
+    public void Borrar(int id) {
         try {
             String query = "delete from Producto where idproducto = ?";
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, id);
-            preparedStmt.execute();
+            
+            PreparedStatement statement
+                = this.conexion.prepareStatement(query);
+            
+            statement.setInt(1, id);
+            statement.execute();
         } catch (SQLException e) {
             System.out.println("Failed to make update!");
             e.printStackTrace();
         }
     }
-    
-        public static void Buscar(int id){
-        
-        Conexion.Conexion();
-        
-        preparedStmt = null;
-        
+
+    public Producto Buscar(int id) {
+        Producto pro = null;
+
         try {
-            String query = "select * from Producto where idproducto = ?";
-            preparedStmt = connection.prepareStatement(query);
-            preparedStmt.setInt(1, id);
-            
-            Statement st = connection.createStatement();
+            String query = "SELECT * FROM Producto where idproducto = ?";
+            PreparedStatement statement
+                = this.conexion.prepareStatement(query);
+
+            statement.setInt(1, id);
+            Statement st = this.conexion.createStatement();
 
             ResultSet rs = st.executeQuery(query);
-            
-            while (rs.next()) {
-                int idProducto = rs.getInt("idproducto");
-                String descrip = rs.getString("descripcion");
-                int cantidad = rs.getInt("cantidad");
-                int valor = rs.getInt("valor");
+
+            if (rs.next()) {
+                int codigoProveedor = rs.getInt("idproducto");
+                String Nombre = rs.getString("descripcion");
+                int Apellido = rs.getInt("cantidad");
+                int tel = rs.getInt("valor");
+                System.out.format("%s, %s, %s, $s\n", codigoProveedor, Nombre, Apellido, tel);
+                pro = new Producto(codigoProveedor, Nombre, Apellido, tel);
             }
-            st.close();
+
         } catch (Exception e) {
         }
+        return pro;
     }
+
 }
