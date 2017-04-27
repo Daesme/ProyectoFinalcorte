@@ -1,3 +1,18 @@
+<%@page import="Modelo.Empleado"%>
+<%@page import="Modelo.Provedor"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="controlador.ProvedorDAO"%>
+<%@page import="java.util.ArrayList"%>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<%@page import="Modelo.Producto"%>
+<%@page import="controlador.EmpleadosDAO"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <html lang="en">
     <head>
         <title>Home</title>
@@ -263,28 +278,51 @@
         <br>
 
         <!--Contenido-->
-          <body >
-        <div style="text-align: center;">
-            <form method="get" action="empleados" name="empleados"><FONT FACE="impact" SIZE="10" COLOR="black"> Nuevo Empleado </FONT><br>
-                <br><div style="text-align: center;">
-                    <img style="width: 218px; height: 218px;"src="Imagenes/emp.jpg"><br>
-                    <br>
-                    Codigo: &nbsp; &nbsp; &nbsp; &nbsp;<input name="Codigo">
-                    <br>
-                    <br>
-                    Nombre: &nbsp; &nbsp; &nbsp;&nbsp<input name="NombreEmpleado">
-                    <br>
-                    <br>
-                    Duracion del contrato: &nbsp;&nbsp;&nbsp; &nbsp<input name="Duracion">
-                    <br>
-                    <br>
-                    Pago: &nbsp;&nbsp;&nbsp; &nbsp<input name="Pago">
-                    <br>
-                    <br>
-                    <input name="Enviar" type="submit">
-                </div>
-            </form>
-        </div>
+          
+<body >
+       
+            <div style="text-align: center;">
+                <form method="get" action="BuscarProducto" name="BuscarProducto">
+                    <FONT FACE="impact" SIZE="6" COLOR="black"> INVENTARIO </FONT><br>
+                    <table border="2px"  >
+            <tr>
+               <td WIDTH="320">Id</td>
+               <td WIDTH="320">Descripcion</td> 
+               <td WIDTH="320">Cantidad</td>
+               <td WIDTH="320" >Valor</td> 
+            </tr>
+            
+                   
+                      <%
+               LinkedList<Empleado> a =new LinkedList <>();
+               int id ;
+               String Nombre;
+               int duracion;
+               int pago;
+               EmpleadosDAO lis=new EmpleadosDAO();
+               a=lis.ListarA();
+               for(int i=0; i<a.size();i++){
+               id=a.get(i).getCodigo();
+               Nombre=a.get(i).getNombre();
+               duracion=a.get(i).getDuracion();
+               pago=a.get(i).getPago();
+               %>  
+                <br>
+               <tr>
+               <td WIDTH="320"><%=id%></td>
+               <td WIDTH="320"><%=Nombre%></td>
+               <td WIDTH="320"><%=duracion%></td>
+               <td WIDTH="320"><%=pago%></td> 
+        </tr>
+        
+               <%
+               } 
+                   
+        %>   
+          </table>      
+          <br>
+                    
+                </form>
     </body>
         <br>
     </body>

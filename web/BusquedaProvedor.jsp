@@ -230,7 +230,7 @@
         <br>
                 <!--Navegacion-->
         <div class="col-sm-12" id="nav" style="z-index: 5">
-            <ul class="navi" >              
+           <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
                     <ul>
                         <li><a href="NuevaVenta.jsp" class="botonNav">Nueva Venta</a></li>
@@ -243,7 +243,7 @@
                 <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
                         <li><a href="BusquedaProvedor.jsp" class="botonNav">Busqueda Provedor</a></li>
-                        <li><a href=".jsp" class="botonNav">Lista de Provedores</a></li>                        
+                        <li><a href="ListaProvedores.jsp" class="botonNav">Lista de Provedores</a></li>                        
                     </ul>
 
                 
@@ -253,7 +253,7 @@
                     <ul>
                         <li><a href="EmpleadoNuevo.html" class="botonNav">Nuevo Empleado</a></li>
                        
-                        <li><a href=".html" class="botonNav">Lista de empleados</a></li>
+                        <li><a href="ListaEmpleados.jsp" class="botonNav">Lista de empleados</a></li>
                         <li><a href="BusquedaEmpleado.jsp" class="botonNav">Busqueda de empleados</a></li>
                         
                     </ul>
@@ -285,12 +285,10 @@
                  <%
           Provedor pro = (Provedor)request.getAttribute("provedor");
            if(pro != null){
-               ProvedorDAO est = new ProvedorDAO();
-               est.ListarUnitario(pro.getId());
-               int id = est.id;
-               String nombre = est.nuevo1;
-               String apellido = est.nuevo2;
-               int tel = est.tel;
+               int id = pro.getId();
+               String nombre = pro.getNombre();
+               String apellido = pro.getApellido();
+               int tel = pro.getTelefono();            
         %>   
           <br>
         <table style="position:absolute;top:200px;left:600px ">
@@ -318,3 +316,4 @@
         <br>
     </body>
 </html>
+}

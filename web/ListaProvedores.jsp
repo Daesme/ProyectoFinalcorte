@@ -1,3 +1,17 @@
+<%@page import="Modelo.Provedor"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="controlador.ProvedorDAO"%>
+<%@page import="java.util.ArrayList"%>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<%@page import="Modelo.Producto"%>
+<%@page import="controlador.ProvedorDAO"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <html lang="en">
     <head>
         <title>Home</title>
@@ -73,7 +87,7 @@
             #content{
                 height: 520px;
                 Backgroundcolor :#FF9900;
-                
+
                 border: white 5px solid;
             }
             #footer1, #footer2{
@@ -98,7 +112,7 @@
 
 
             }
-            
+
             body{                
                 background-color: #FF9900; 
             }
@@ -154,12 +168,12 @@
                 font-size: 30px;    
                 font-family: comicsans;
                 text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;
-                
-                
+
+
             }
 
-            
-            
+
+
             .autoSize{
                 height: auto; 
                 width: auto; 
@@ -175,7 +189,7 @@
                 text-shadow: -2px -2px 3px #000, 2px 2px 3px #000, -2px 2px 3px #000, 2px -2px 3px #000;
                 margin: 2px 1px;
             }
-            
+
             ul, ol{
                 list-style:none; 
             }
@@ -210,15 +224,15 @@
                 <img class="img-rounded" src="Imagenes/gg.jpg" alt="NOT FOUND">
             </div>
             <div class="col-sm-8" id="titulo1">
- <font face="Comic Sans MS,arial,verdana" size=20px color="white" style="position: relative; left: 0px; top: 40px">
-                
-<P ><b>SUPERMERCADO NECAFAM</b></P>
-</font>
+                <font face="Comic Sans MS,arial,verdana" size=20px color="white" style="position: relative; left: 0px; top: 40px">
+
+                <P ><b>SUPERMERCADO NECAFAM</b></P>
+                </font>
             </div>
 
         </header>
         <br>
-                <!--Navegacion-->
+        <!--Navegacion-->
         <div class="col-sm-12" id="nav" style="z-index: 5">
             <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
@@ -255,7 +269,7 @@
                         <li><a href="ListaProductos.jsp" class="botonNav">Lista de Producto</a></li>                        
                         <li><a href="BusquedaProductos.jsp" class="botonNav">Busqueda de productos</a></li>   
                 </ul>
-                
+
                 </li>
             </ul>        
 
@@ -263,29 +277,52 @@
         <br>
 
         <!--Contenido-->
-          <body >
-        <div style="text-align: center;">
-            <form method="get" action="empleados" name="empleados"><FONT FACE="impact" SIZE="10" COLOR="black"> Nuevo Empleado </FONT><br>
-                <br><div style="text-align: center;">
-                    <img style="width: 218px; height: 218px;"src="Imagenes/emp.jpg"><br>
-                    <br>
-                    Codigo: &nbsp; &nbsp; &nbsp; &nbsp;<input name="Codigo">
-                    <br>
-                    <br>
-                    Nombre: &nbsp; &nbsp; &nbsp;&nbsp<input name="NombreEmpleado">
-                    <br>
-                    <br>
-                    Duracion del contrato: &nbsp;&nbsp;&nbsp; &nbsp<input name="Duracion">
-                    <br>
-                    <br>
-                    Pago: &nbsp;&nbsp;&nbsp; &nbsp<input name="Pago">
-                    <br>
-                    <br>
-                    <input name="Enviar" type="submit">
-                </div>
-            </form>
-        </div>
+
+   <body >
+       
+            <div style="text-align: center;">
+                <form method="get" action="BuscarProducto" name="BuscarProducto">
+                    <FONT FACE="impact" SIZE="6" COLOR="black"> INVENTARIO </FONT><br>
+                    <table border="2px"  >
+            <tr>
+               <td WIDTH="320">Id</td>
+               <td WIDTH="320">Nombre</td> 
+               <td WIDTH="320">Apellido</td>
+               <td WIDTH="320" >Telefono</td> 
+            </tr>
+            
+                   
+                      <%
+               LinkedList<Provedor> a =new LinkedList <Provedor>();
+                int id ;
+                int telefono;
+                String nombre;
+               String apellido;
+               ProvedorDAO lis=new ProvedorDAO();
+               a=lis.Listar();
+               for(int i=0; i<a.size();i++){
+               id=a.get(i).getId();
+               nombre=a.get(i).getNombre();
+               apellido=a.get(i).getApellido();
+              telefono=a.get(i).getTelefono();
+               %>  
+                <br>
+               <tr>
+               <td WIDTH="320"><%=id%></td>
+               <td WIDTH="320"><%=nombre%></td>
+               <td WIDTH="320"><%=apellido%></td>
+               <td WIDTH="320"><%=telefono%></td> 
+        </tr>
+        
+               <%
+               } 
+                   
+        %>   
+          </table>      
+          <br>
+                    
+                </form>
     </body>
-        <br>
-    </body>
+    <br>
+</body>
 </html>

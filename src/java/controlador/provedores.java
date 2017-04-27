@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class provedores extends HttpServlet {
    
-    ProvedorDAO prove;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,7 +39,6 @@ public class provedores extends HttpServlet {
             int tel = Integer.valueOf(request.getParameter("Telefono"));
 
             /* TODO output your page here. You may use following sample code. */
-                prove = new ProvedorDAO();
                 ProvedorDAO.Insetar(id,nombre2,apellido2,tel);
         }
     }

@@ -32,6 +32,10 @@
         <servlet-name>ListaProductos</servlet-name>
         <servlet-class>controlador.ListaProductos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListaProvedores</servlet-name>
+        <servlet-class>controlador.ListaProvedoresServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Ejemplo</servlet-name>
         <url-pattern>/Ingresodocentes</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>ListaProductos</servlet-name>
         <url-pattern>/ListaProductos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListaProvedores</servlet-name>
+        <url-pattern>/ListaProvedores</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

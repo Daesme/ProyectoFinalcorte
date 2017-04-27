@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import Modelo.Producto;
 import static controlador.ProvedorDAO.connection;
 import static controlador.ProvedorDAO.preparedStmt;
 import java.sql.Connection;
@@ -12,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import util.Conexion;
 
 /**
@@ -62,10 +64,10 @@ public class ProductosDAO {
         }
     }
 
-    public static void ListarA() {
+    public static LinkedList<Producto> ListarA() {
 
         Conexion.Conexion();
-
+        LinkedList<Producto> a = new LinkedList<>();
         String query = "SELECT * FROM Producto";
 
         try {
@@ -78,6 +80,9 @@ public class ProductosDAO {
                 String descrip = rs.getString("descripcion");
                 int cantidad = rs.getInt("cantidad");
                 int valor = rs.getInt("valor");
+                
+                Producto pro = new Producto(idProducto, descrip, cantidad, valor);
+                a.add(pro);
             }
             st.close();
 
@@ -91,6 +96,8 @@ public class ProductosDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        return a;
     }
 
     public static void BorrarA(int id) {

@@ -5,6 +5,8 @@
  */
 package controlador;
 
+import Modelo.Empleado;
+import Modelo.Producto;
 import static controlador.ProductosDAO.connection;
 import static controlador.ProductosDAO.preparedStmt;
 import java.sql.Connection;
@@ -12,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import util.Conexion;
 
 /**
@@ -62,10 +65,10 @@ public class EmpleadosDAO {
         }
     }
 
-    public static void ListarA() {
+    public static LinkedList<Empleado> ListarA() {
 
         Conexion.Conexion();
-
+        LinkedList<Empleado> a = new LinkedList<>();
         String query = "SELECT * FROM Empleados";
 
         try {
@@ -78,6 +81,9 @@ public class EmpleadosDAO {
                 String empleadoName = rs.getString("empleadoName");
                 int duracion = rs.getInt("duracion");
                 int pago = rs.getInt("pago");
+                
+                Empleado emp = new Empleado(idEmpleado, empleadoName, duracion,pago);
+                a.add(emp);
             }
             st.close();
 
@@ -91,6 +97,7 @@ public class EmpleadosDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return a;
     }
 
     public static void BorrarA(int id) {

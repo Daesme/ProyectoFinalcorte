@@ -19,7 +19,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class empleados extends HttpServlet {
 
-    EmpleadosDAO cur;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +37,11 @@ public class empleados extends HttpServlet {
             int codigo = Integer.valueOf(request.getParameter("Codigo"));
             String nombre2 = request.getParameter("NombreEmpleado");
             int dur = Integer.valueOf(request.getParameter("Duracion"));
+            int pago = Integer.valueOf(request.getParameter("Pago"));
 
             /* TODO output your page here. You may use following sample code. */
-            Empleado curso = new Empleado(codigo, nombre2, dur);
             
+            EmpleadosDAO.Insetar(codigo, nombre2, dur, pago);
         }
     }
 

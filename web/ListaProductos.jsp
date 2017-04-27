@@ -1,3 +1,6 @@
+<%@page import="Modelo.Provedor"%>
+<%@page import="java.util.LinkedList"%>
+<%@page import="controlador.ProvedorDAO"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <!--
@@ -6,7 +9,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <%@page import="Modelo.Producto"%>
-<%@page import="controlador.ProductoDao"%>
+<%@page import="controlador.ProductosDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html lang="en">
@@ -234,7 +237,7 @@ and open the template in the editor.
             <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
                     <ul>
-                        <li><a href=".html" class="botonNav">Nueva Venta</a></li>
+                        <li><a href="NuevaVenta.jsp" class="botonNav">Nueva Venta</a></li>
                         <li><a href=".html" class="botonNav">Registro de venta </a></li>
                         <li><a href=".html" class="botonNav">lista de venta</a></li>
                     </ul>
@@ -244,7 +247,7 @@ and open the template in the editor.
                 <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
                         <li><a href="BusquedaProvedor.jsp" class="botonNav">Busqueda Provedor</a></li>
-                        <li><a href=".jsp" class="botonNav">Lista de Provedores</a></li>                        
+                        <li><a href="ListaProvedores.jsp" class="botonNav">Lista de Provedores</a></li>                        
                     </ul>
 
                 
@@ -252,9 +255,9 @@ and open the template in the editor.
                 <li><a href="" class="botonNav">Empleados</a>
 
                     <ul>
-                        <li><a href="NuevaVenta.jsp" class="botonNav">Nuevo Empleado</a></li>
+                        <li><a href="EmpleadoNuevo.html" class="botonNav">Nuevo Empleado</a></li>
                        
-                        <li><a href=".html" class="botonNav">Lista de empleados</a></li>
+                        <li><a href="ListaEmpleados.jsp" class="botonNav">Lista de empleados</a></li>
                         <li><a href="BusquedaEmpleado.jsp" class="botonNav">Busqueda de empleados</a></li>
                         
                     </ul>
@@ -275,7 +278,7 @@ and open the template in the editor.
 
         <!--Contenido-->
           
-    <body >
+<body >
        
             <div style="text-align: center;">
                 <form method="get" action="BuscarProducto" name="BuscarProducto">
@@ -283,21 +286,32 @@ and open the template in the editor.
                     <table border="2px"  >
             <tr>
                <td WIDTH="320">Id</td>
-               <td WIDTH="320">Nombre</td> 
-               <td WIDTH="320">Apellido</td>
-               <td WIDTH="320" >Precio</td> 
+               <td WIDTH="320">Descripcion</td> 
+               <td WIDTH="320">Cantidad</td>
+               <td WIDTH="320" >Valor</td> 
             </tr>
             
                    
                       <%
-               
+               LinkedList<Producto> a =new LinkedList <>();
+               int id ;
+               String Descripcion;
+               int cantidad;
+               int precio;
+               ProductosDAO lis=new ProductosDAO();
+               a=lis.ListarA();
+               for(int i=0; i<a.size();i++){
+               id=a.get(i).getId();
+               Descripcion=a.get(i).getDescripcion();
+               cantidad=a.get(i).getCantidad();
+               precio=a.get(i).getValor();
                %>  
                 <br>
                <tr>
-               <td WIDTH="320"><%%></td>
-               <td WIDTH="320"><%%></td>
-               <td WIDTH="320"><%%></td>
-               <td WIDTH="320"><%%></td> 
+               <td WIDTH="320"><%=id%></td>
+               <td WIDTH="320"><%=Descripcion%></td>
+               <td WIDTH="320"><%=cantidad%></td>
+               <td WIDTH="320"><%=precio%></td> 
         </tr>
         
                <%

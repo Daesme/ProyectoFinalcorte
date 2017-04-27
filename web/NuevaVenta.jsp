@@ -12,7 +12,6 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <%@page import="Modelo.Producto"%>
-<%@page import="controlador.ProductoDao"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html lang="en">
@@ -90,7 +89,7 @@ and open the template in the editor.
             #content{
                 height: 520px;
                 Backgroundcolor :#FF9900;
-                
+
                 border: white 5px solid;
             }
             #footer1, #footer2{
@@ -115,7 +114,7 @@ and open the template in the editor.
 
 
             }
-            
+
             body{                
                 background-color: #FF9900; 
             }
@@ -171,12 +170,12 @@ and open the template in the editor.
                 font-size: 30px;    
                 font-family: comicsans;
                 text-shadow: -2px -2px 1px #000, 2px 2px 1px #000, -2px 2px 1px #000, 2px -2px 1px #000;
-                
-                
+
+
             }
 
-            
-            
+
+
             .autoSize{
                 height: auto; 
                 width: auto; 
@@ -192,7 +191,7 @@ and open the template in the editor.
                 text-shadow: -2px -2px 3px #000, 2px 2px 3px #000, -2px 2px 3px #000, 2px -2px 3px #000;
                 margin: 2px 1px;
             }
-            
+
             ul, ol{
                 list-style:none; 
             }
@@ -227,15 +226,15 @@ and open the template in the editor.
                 <img class="img-rounded" src="Imagenes/gg.jpg" alt="NOT FOUND">
             </div>
             <div class="col-sm-8" id="titulo1">
- <font face="Comic Sans MS,arial,verdana" size=20px color="white" style="position: relative; left: 0px; top: 40px">
-                
-<P ><b>SUPERMERCADO NECAFAM</b></P>
-</font>
+                <font face="Comic Sans MS,arial,verdana" size=20px color="white" style="position: relative; left: 0px; top: 40px">
+
+                <P ><b>SUPERMERCADO NECAFAM</b></P>
+                </font>
             </div>
 
         </header>
         <br>
-                <!--Navegacion-->
+        <!--Navegacion-->
         <div class="col-sm-12" id="nav" style="z-index: 5">
             <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
@@ -248,9 +247,9 @@ and open the template in the editor.
                 </li>
                 <li><a href="" class="botonNav">Provedores</a>
                 <ul>
-                        <li><a href="NuevaVenta.jsp" class="botonNav">Nuevo Provedor</a></li>
+                        <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
                         <li><a href="BusquedaProvedor.jsp" class="botonNav">Busqueda Provedor</a></li>
-                        <li><a href=".jsp" class="botonNav">Lista de Provedores</a></li>                        
+                        <li><a href="ListaProvedores.jsp" class="botonNav">Lista de Provedores</a></li>                        
                     </ul>
 
                 
@@ -260,7 +259,7 @@ and open the template in the editor.
                     <ul>
                         <li><a href="EmpleadoNuevo.html" class="botonNav">Nuevo Empleado</a></li>
                        
-                        <li><a href=".html" class="botonNav">Lista de empleados</a></li>
+                        <li><a href="ListaEmpleados.jsp" class="botonNav">Lista de empleados</a></li>
                         <li><a href="BusquedaEmpleado.jsp" class="botonNav">Busqueda de empleados</a></li>
                         
                     </ul>
@@ -272,7 +271,7 @@ and open the template in the editor.
                         <li><a href="ListaProductos.jsp" class="botonNav">Lista de Producto</a></li>                        
                         <li><a href="BusquedaProductos.jsp" class="botonNav">Busqueda de productos</a></li>   
                 </ul>
-                
+
                 </li>
             </ul>        
 
@@ -280,71 +279,59 @@ and open the template in the editor.
         <br>
 
         <!--Contenido-->
-          
-    
+
+
     <body >
-       <div style="text-align: center;">
-       <FONT FACE="impact" SIZE="10" COLOR="black"> Nueva Venta </FONT><br>
+        <div style="text-align: center;">
+            <FONT FACE="impact" SIZE="10" COLOR="black"> Nueva Venta </FONT><br>
+            <br>
+            <img style="width: 218px; height: 218px;"src="Imagenes/NuevaVenta.png"><br>
+            <br>ID Factura:<input name="IDProvedor">
+            <br>
+            <br>
+            Id Producto: <input name="Id Producto"><br>
+            <br>
+            Id Empleado: <input name="Id Empleado"><br>
+            <br>
+            Valor :<input name="Valor"><br>
+            <br>
+            <input name="Enviar" type="submit">
+        </div>
+
+
+
+        <div style="text-align: center;">
+            <form method="get" action="BuscarProducto" name="BuscarProducto">
+                <FONT FACE="impact" SIZE="6" COLOR="black"> Ventas </FONT><br>
+                <table border="2px"  >
+                    <tr>
+                        <td WIDTH="320">ID Factura</td>
+                        <td WIDTH="320">Id Producto</td> 
+                        <td WIDTH="320">Id Empleado</td>
+                        <td WIDTH="320" >Valor</td> 
+                    </tr>
+
+
+                    <%
+
+                    %>  
+                    <br>
+                    <tr>
+                        <td WIDTH="320"><%%></td>
+                        <td WIDTH="320"><%%></td>
+                        <td WIDTH="320"><%%></td>
+                        <td WIDTH="320"><%%></td> 
+                    </tr>
+
+                    <%                   }
+
+                    %>   
+                </table>      
                 <br>
-                    <img style="width: 218px; height: 218px;"src="Imagenes/NuevaVenta.png"><br>
-                    <br>ID Factura:<input name="IDProvedor">
-                    <br>
-                    <br>
-                    Id Producto: <input name="Id Producto"><br>
-                    <br>
-                    Id Empleado: <input name="Id Empleado"><br>
-                    <br>
-                    Valor :<input name="Valor"><br>
-                    <br>
-                    <input name="Enviar" type="submit">
-                </div>
-        
-        
-        
-            <div style="text-align: center;">
-                <form method="get" action="BuscarProducto" name="BuscarProducto">
-                    <FONT FACE="impact" SIZE="6" COLOR="black"> Ventas </FONT><br>
-                    <table border="2px"  >
-            <tr>
-               <td WIDTH="320">ID Factura</td>
-               <td WIDTH="320">Id Producto</td> 
-               <td WIDTH="320">Id Empleado</td>
-               <td WIDTH="320" >Valor</td> 
-            </tr>
-            
-                   
-                      <%
-                ArrayList<Producto> a =new ArrayList ();
-                int id ;
-                int dura;
-                int valor;
-               char[] am=new char[20];
-               ProductoDao lis = new ProductoDao();
-               a=lis.listarTodo();
-               for(int i=0; i<a.size();i++){
-               id=a.get(i).getId();
-               am=a.get(i).getDescripcion();
-               dura=a.get(i).getCantidad();
-               valor=a.get(i).getValor();
-               %>  
-                <br>
-               <tr>
-               <td WIDTH="320"><%=id%></td>
-               <td WIDTH="320"><%=am%></td>
-               <td WIDTH="320"><%=dura%></td>
-               <td WIDTH="320"><%=valor%></td> 
-        </tr>
-        
-               <%
-               } 
-                   
-        %>   
-          </table>      
-          <br>
-                    
-                </form>
+
+            </form>
     </body>
 
-        <br>
-    </body>
+    <br>
+</body>
 </html>

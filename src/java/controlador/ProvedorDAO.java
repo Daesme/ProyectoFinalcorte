@@ -5,11 +5,15 @@
  */
 package controlador;
 
+import Modelo.Producto;
+import Modelo.Provedor;
+import static controlador.ProductosDAO.connection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import util.Conexion;
 
 /**
@@ -17,9 +21,10 @@ import util.Conexion;
  * @author crist
  */
 public class ProvedorDAO {
+
     public static Connection connection;
     public static PreparedStatement preparedStmt;
-    
+
     public static void Insetar(int idP, String Nombre, String apellido, int tel) {
 
         Conexion.Conexion();
@@ -48,7 +53,7 @@ public class ProvedorDAO {
         preparedStmt = null;
 
         try {
-            
+
             String query = "update Proveedor set ProvedorName = ? where idProvedor = ?";
             preparedStmt = connection.prepareStatement(query);
             preparedStmt.setString(1, nuevoNombre);
@@ -61,9 +66,10 @@ public class ProvedorDAO {
         }
     }
 
-    public static void Listar() {
+    public static LinkedList<Provedor> Listar() {
 
         Conexion.Conexion();
+        LinkedList<Provedor> a = new LinkedList<>();
 
         String query = "SELECT * FROM Proveedor";
 
@@ -71,14 +77,17 @@ public class ProvedorDAO {
             Statement st = connection.createStatement();
 
             ResultSet rs = st.executeQuery(query);
-
+           
             while (rs.next()) {
                 int codigoProveedor = rs.getInt("idProvedor");
                 String Nombre = rs.getString("ProvedorName");
                 String Apellido = rs.getString("ProveedorAp");
                 int tel = rs.getInt("tel");
-                
+
+                Provedor pro = new Provedor(codigoProveedor, Nombre, Apellido, tel);
+                a.add(pro);
             }
+            System.out.println(a);
             st.close();
 
         } catch (SQLException e) {
@@ -91,6 +100,8 @@ public class ProvedorDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return a;
     }
 
     public static void Borrar(int id) {
@@ -109,32 +120,32 @@ public class ProvedorDAO {
             e.printStackTrace();
         }
     }
-    
-    public static void Buscar(int id){
-        
+
+    public static Provedor Buscar(int id) {
+
         Conexion.Conexion();
-        
-        preparedStmt = null;
-        
+        Provedor pro = null;
+
         try {
-            String query = "select * from Proveedor where idProveedor = ?";
+            String query = "SELECT * FROM Proveedor where idProveedor = ?";
             preparedStmt = connection.prepareStatement(query);
             preparedStmt.setInt(1, id);
-            
             Statement st = connection.createStatement();
 
             ResultSet rs = st.executeQuery(query);
+                
+                if (rs.next()) {
+                    int codigoProveedor = rs.getInt("idProvedor");
+                    String Nombre = rs.getString("ProvedorName");
+                    String Apellido = rs.getString("ProveedorAp");
+                    int tel = rs.getInt("tel");
+                    System.out.format("%s, %s, %s, $s\n", codigoProveedor, Nombre, Apellido, tel);
+                    pro = new Provedor(codigoProveedor, Nombre, Apellido, tel);
+                }
             
-            while (rs.next()) {
-                int codigoArtista = rs.getInt("idProvedor");
-                String Nombre = rs.getString("ProvedorName");
-                String Apellido = rs.getString("ProveedorAp");
-                int tel = rs.getInt("tel");           
-            }
-            st.close();
         } catch (Exception e) {
         }
+        return pro;
     }
-    
-    
+
 }
