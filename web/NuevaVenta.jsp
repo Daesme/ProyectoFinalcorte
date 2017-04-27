@@ -248,6 +248,7 @@ and open the template in the editor.
                 <li><a href="" class="botonNav">Provedores</a>
                 <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
+                        <li><a href="BorrarProvedor.html" class="botonNav">Borrar Provedor</a></li>
                         <li><a href="BusquedaProvedor.jsp" class="botonNav">Busqueda Provedor</a></li>
                         <li><a href="ListaProvedores.jsp" class="botonNav">Lista de Provedores</a></li>                        
                     </ul>
@@ -258,7 +259,7 @@ and open the template in the editor.
 
                     <ul>
                         <li><a href="EmpleadoNuevo.html" class="botonNav">Nuevo Empleado</a></li>
-                       
+                       <li><a href="BorrarEmpleado.html" class="botonNav">Borrar Empleado</a></li>
                         <li><a href="ListaEmpleados.jsp" class="botonNav">Lista de empleados</a></li>
                         <li><a href="BusquedaEmpleado.jsp" class="botonNav">Busqueda de empleados</a></li>
                         
@@ -267,7 +268,7 @@ and open the template in the editor.
                 <li><a href=""  class="botonNav">Productos</a>
                 <ul>
                         <li><a href="Ingresodeproductos.html" class="botonNav">Nuevo Producto</a></li>
-                        
+                        <li><a href="BorrarProducto.html" class="botonNav">Borrar Producto</a></li>
                         <li><a href="ListaProductos.jsp" class="botonNav">Lista de Producto</a></li>                        
                         <li><a href="BusquedaProductos.jsp" class="botonNav">Busqueda de productos</a></li>   
                 </ul>
