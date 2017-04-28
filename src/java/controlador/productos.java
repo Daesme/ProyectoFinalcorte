@@ -38,7 +38,7 @@ public class productos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
         }
     }
 
@@ -55,14 +55,14 @@ public class productos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.valueOf(request.getParameter("id"));
-            String nombre2 = request.getParameter("Descripcion");
-            int cantidad = Integer.valueOf(request.getParameter("Cantidad"));
-            int valor = Integer.valueOf(request.getParameter("Precio"));
+        String nombre2 = request.getParameter("Descripcion");
+        int cantidad = Integer.valueOf(request.getParameter("Cantidad"));
+        int valor = Integer.valueOf(request.getParameter("Precio"));
 
-            /* TODO output your page here. You may use following sample code. */
-            ProductosDAO s=new ProductosDAO();
+        /* TODO output your page here. You may use following sample code. */
+        ProductosDAO s = new ProductosDAO();
         try {
-            s.Insetar(id,nombre2,cantidad,valor);
+            s.Insetar(id, nombre2, cantidad, valor);
         } catch (SQLException ex) {
             Logger.getLogger(productos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -79,6 +79,11 @@ public class productos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        int codigo = Integer.valueOf(request.getParameter("idproductos"));
+        ProductosDAO c = new ProductosDAO();
+        c.Borrar(codigo);
+
         try {
             processRequest(request, response);
         } catch (SQLException ex) {

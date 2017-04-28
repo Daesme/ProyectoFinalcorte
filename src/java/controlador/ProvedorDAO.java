@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.Conexion;
 
 /**
@@ -95,28 +97,24 @@ public class ProvedorDAO {
 
     public Provedor Buscar(int id) {
         Provedor pro = null;
-
         try {
-            String query = "SELECT * FROM Proveedor where idProveedor = ?";
+            String query = "SELECT * FROM Proveedor where idProvedor = ?";
             PreparedStatement statement
                 = this.conexion.prepareStatement(query);
             statement.setInt(1, id);
-            Statement st = this.conexion.createStatement();
-
-            ResultSet rs = st.executeQuery(query);
+            ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
                 int codigoProveedor = rs.getInt("idProvedor");
                 String Nombre = rs.getString("ProvedorName");
                 String Apellido = rs.getString("ProveedorAp");
                 int tel = rs.getInt("tel");
-                System.out.format("%s, %s, %s, $s\n", codigoProveedor, Nombre, Apellido, tel);
                 pro = new Provedor(codigoProveedor, Nombre, Apellido, tel);
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
+             Logger.getLogger(ProvedorDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pro;
     }
-
 }

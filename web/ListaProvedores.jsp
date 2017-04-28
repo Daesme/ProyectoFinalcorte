@@ -237,92 +237,90 @@ and open the template in the editor.
             <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
                     <ul>
-                        <li><a href="NuevaVenta.jsp" class="botonNav">Nueva Venta</a></li>
-                        <li><a href=".html" class="botonNav">Registro de venta </a></li>
-                        <li><a href=".html" class="botonNav">lista de venta</a></li>
+                        <li><a href="NuevaVenta.html" class="botonNav">Nueva Venta</a></li>
+                        <li><a href="ListaVentas.jsp" class="botonNav">lista de venta</a></li>
                     </ul>
 
-                </li>
                 <li><a href="" class="botonNav">Provedores</a>
-                <ul>
+                    <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
                         <li><a href="BorrarProvedor.html" class="botonNav">Borrar Provedor</a></li>
                         <li><a href="BusquedaProvedor.jsp" class="botonNav">Busqueda Provedor</a></li>
                         <li><a href="ListaProvedores.jsp" class="botonNav">Lista de Provedores</a></li>                        
                     </ul>
 
-                
+
                 </li>
                 <li><a href="" class="botonNav">Empleados</a>
 
                     <ul>
                         <li><a href="EmpleadoNuevo.html" class="botonNav">Nuevo Empleado</a></li>
-                       <li><a href="BorrarEmpleado.html" class="botonNav">Borrar Empleado</a></li>
+                        <li><a href="BorrarEmpleado.html" class="botonNav">Borrar Empleado</a></li>
                         <li><a href="ListaEmpleados.jsp" class="botonNav">Lista de empleados</a></li>
                         <li><a href="BusquedaEmpleado.jsp" class="botonNav">Busqueda de empleados</a></li>
-                        
+
                     </ul>
                 </li>
                 <li><a href=""  class="botonNav">Productos</a>
-                <ul>
+                    <ul>
                         <li><a href="Ingresodeproductos.html" class="botonNav">Nuevo Producto</a></li>
                         <li><a href="BorrarProducto.html" class="botonNav">Borrar Producto</a></li>
                         <li><a href="ListaProductos.jsp" class="botonNav">Lista de Producto</a></li>                        
                         <li><a href="BusquedaProductos.jsp" class="botonNav">Busqueda de productos</a></li>   
-                </ul>
+                    </ul>
 
                 </li>
-            </ul>        
+            </ul>       
 
         </div>
         <br>
 
         <!--Contenido-->
 
-   <body >
-       
-            <div style="text-align: center;">
-                <form method="get" action="BuscarProducto" name="BuscarProducto">
-                    <FONT FACE="impact" SIZE="6" COLOR="black"> INVENTARIO </FONT><br>
-                    <table border="2px"  >
-            <tr>
-               <td WIDTH="320">Id</td>
-               <td WIDTH="320">Nombre</td> 
-               <td WIDTH="320">Apellido</td>
-               <td WIDTH="320" >Telefono</td> 
-            </tr>
-            
-                   
-                      <%
-               LinkedList<Provedor> a =new LinkedList <Provedor>();
-                int id ;
-                int telefono;
-                String nombre;
-               String apellido;
-               ProvedorDAO lis=new ProvedorDAO();
-               a=lis.Listar();
-               for(int i=0; i<a.size();i++){
-               id=a.get(i).getId();
-               nombre=a.get(i).getNombre();
-               apellido=a.get(i).getApellido();
-              telefono=a.get(i).getTelefono();
-               %>  
+    <body >
+
+        <div style="text-align: center;">
+            <form method="get" action="BuscarProducto" name="BuscarProducto">
+                <FONT FACE="impact" SIZE="6" COLOR="black"> INVENTARIO </FONT><br>
+                <table border="2px"  >
+                    <tr>
+                        <td WIDTH="320">Id</td>
+                        <td WIDTH="320">Nombre</td> 
+                        <td WIDTH="320">Apellido</td>
+                        <td WIDTH="320" >Telefono</td> 
+                    </tr>
+
+
+                    <%
+                        LinkedList<Provedor> a = new LinkedList<Provedor>();
+                        int id;
+                        int telefono;
+                        String nombre;
+                        String apellido;
+                        ProvedorDAO lis = new ProvedorDAO();
+                        a = lis.Listar();
+                        for (int i = 0; i < a.size(); i++) {
+                            id = a.get(i).getId();
+                            nombre = a.get(i).getNombre();
+                            apellido = a.get(i).getApellido();
+                            telefono = a.get(i).getTelefono();
+                    %>  
+                    <br>
+                    <tr>
+                        <td WIDTH="320"><%=id%></td>
+                        <td WIDTH="320"><%=nombre%></td>
+                        <td WIDTH="320"><%=apellido%></td>
+                        <td WIDTH="320"><%=telefono%></td> 
+                    </tr>
+
+                    <%
+                        }
+
+                    %>   
+                </table>      
                 <br>
-               <tr>
-               <td WIDTH="320"><%=id%></td>
-               <td WIDTH="320"><%=nombre%></td>
-               <td WIDTH="320"><%=apellido%></td>
-               <td WIDTH="320"><%=telefono%></td> 
-        </tr>
-        
-               <%
-               } 
-                   
-        %>   
-          </table>      
-          <br>
-                    
-                </form>
+
+            </form>
     </body>
     <br>
 </body>

@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import Modelo.Empleado;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -18,7 +19,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Labing
  */
 public class BusquedaEmpleados extends HttpServlet {
-
+    
+    Empleado emp;
+    EmpleadosDAO empDAO;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,8 +37,10 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */         
             String codigo = request.getParameter("codigo");
-            Modelo.Empleado emp = new Modelo.Empleado(Integer.parseInt(codigo),null,0,0);
             
+            empDAO = new EmpleadosDAO();
+            emp = empDAO.Buscar(Integer.parseInt(codigo));
+            System.out.println(emp);
             RequestDispatcher dispacher =request.getRequestDispatcher("BusquedaEmpleado.jsp");
             
             request.setAttribute("empleado", emp);

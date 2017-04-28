@@ -29,16 +29,20 @@
         <servlet-class>controlador.provedores</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListaProductos</servlet-name>
-        <servlet-class>controlador.ListaProductos</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ListaProvedores</servlet-name>
-        <servlet-class>controlador.ListaProvedoresServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ventas</servlet-name>
         <servlet-class>controlador.ventas</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InicioSesiones</servlet-name>
+        <servlet-class>controlador.InicioSesiones</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreacionUsuario</servlet-name>
+        <servlet-class>controlador.CreacionUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RecuperarContraseña</servlet-name>
+        <servlet-class>controlador.RecuperarContraseña</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Ejemplo</servlet-name>
@@ -69,16 +73,20 @@
         <url-pattern>/provedores</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListaProductos</servlet-name>
-        <url-pattern>/ListaProductos</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ListaProvedores</servlet-name>
-        <url-pattern>/ListaProvedores</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ventas</servlet-name>
         <url-pattern>/ventas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InicioSesiones</servlet-name>
+        <url-pattern>/InicioSesiones</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreacionUsuario</servlet-name>
+        <url-pattern>/CreacionUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecuperarContraseña</servlet-name>
+        <url-pattern>/RecuperarContraseña</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Labing
  */
 public class provedores extends HttpServlet {
-   
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,7 +36,7 @@ public class provedores extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            
+
         }
     }
 
@@ -53,14 +53,14 @@ public class provedores extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.valueOf(request.getParameter("IDProvedor"));
-            String nombre2 = request.getParameter("NombreProvedor");
-            String apellido2 = request.getParameter("ApellidoProvedor");
-            int tel = Integer.valueOf(request.getParameter("Telefono"));
+        String nombre2 = request.getParameter("NombreProvedor");
+        String apellido2 = request.getParameter("ApellidoProvedor");
+        int tel = Integer.valueOf(request.getParameter("Telefono"));
 
-            /* TODO output your page here. You may use following sample code. */
-            ProvedorDAO e=new ProvedorDAO();
+        /* TODO output your page here. You may use following sample code. */
+        ProvedorDAO e = new ProvedorDAO();
         try {
-            e.Insetar(id,nombre2,apellido2,tel);
+            e.Insetar(id, nombre2, apellido2, tel);
         } catch (SQLException ex) {
             Logger.getLogger(provedores.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,6 +77,11 @@ public class provedores extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        int idborrar= Integer.valueOf(request.getParameter("idprv"));
+        ProvedorDAO d=new ProvedorDAO();
+        d.Borrar(idborrar);
+        
         try {
             processRequest(request, response);
         } catch (SQLException ex) {

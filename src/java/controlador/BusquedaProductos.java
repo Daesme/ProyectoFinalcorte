@@ -20,6 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class BusquedaProductos extends HttpServlet {
 
+    Producto pro;
+    ProductosDAO c;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,14 +37,20 @@ public class BusquedaProductos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-          
-      
-            /* TODO output your page here. You may use following sample code. */         
-                   }
-    }
 
-        
-    
+            int codigo = Integer.valueOf(request.getParameter("id"));
+
+            c = new ProductosDAO();
+            pro = c.Buscar(codigo);
+
+            RequestDispatcher dispacher = request.getRequestDispatcher("BusquedaProductos.jsp");
+
+            request.setAttribute("producto", pro);
+            dispacher.forward(request, response);
+            
+            /* TODO output your page here. You may use following sample code. */
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -56,15 +65,7 @@ public class BusquedaProductos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        int codigo = Integer.valueOf(request.getParameter("id"));
-           
-            ProductosDAO c=new ProductosDAO();
-           Producto pro= c.Buscar(codigo);
-            RequestDispatcher dispacher =request.getRequestDispatcher("BusquedaProductos.jsp");
-            
-            request.setAttribute("producto", pro);
-            dispacher.forward(request, response);
- 
+
     }
 
     /**

@@ -238,12 +238,10 @@ and open the template in the editor.
             <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
                     <ul>
-                        <li><a href="NuevaVenta.jsp" class="botonNav">Nueva Venta</a></li>
-                        <li><a href=".html" class="botonNav">Registro de venta </a></li>
-                        <li><a href=".html" class="botonNav">lista de venta</a></li>
+                        <li><a href="NuevaVenta.html" class="botonNav">Nueva Venta</a></li>
+                        <li><a href="ListaVentas.jsp" class="botonNav">lista de venta</a></li>
                     </ul>
 
-                </li>
                 <li><a href="" class="botonNav">Provedores</a>
                 <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
@@ -273,7 +271,7 @@ and open the template in the editor.
                 </ul>
 
                 </li>
-            </ul>        
+        </ul>     
 
         </div>
         <br>

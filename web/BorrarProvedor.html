@@ -229,12 +229,10 @@ and open the template in the editor.
             <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
                     <ul>
-                        <li><a href="NuevaVenta.jsp" class="botonNav">Nueva Venta</a></li>
-                        <li><a href=".html" class="botonNav">Registro de venta </a></li>
-                        <li><a href=".html" class="botonNav">lista de venta</a></li>
+                        <li><a href="NuevaVenta.html" class="botonNav">Nueva Venta</a></li>
+                        <li><a href="ListaVentas.jsp" class="botonNav">lista de venta</a></li>
                     </ul>
 
-                </li>
                 <li><a href="" class="botonNav">Provedores</a>
                 <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
@@ -264,7 +262,7 @@ and open the template in the editor.
                 </ul>
 
                 </li>
-            </ul>        
+        </ul>        
 
         </div>
         <br>
@@ -272,12 +270,12 @@ and open the template in the editor.
         <!--Contenido-->
           <body >
             <div style="text-align: center;">
-                <form method="get" action="BorrarProveedor" name="BorrarProveedor">
+                <form method="post" action="provedores" name="BorrarProveedor">
                      <FONT FACE="impact" SIZE="6" COLOR="black"> Eliminar Proveedor</FONT><br>
                     <br>Por favor ingrese el ID del Proveedor que desea eliminar:<br>
-                     ID: <input name="id" type="text"><br>
+                     ID: <input name="idprv" type="text"><br>
                     <br>
-                    <input name="Buscar" type="submit">
+                    <input  name="Buscar" type="submit">
                 </form>
             
           <br>

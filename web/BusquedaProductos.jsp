@@ -229,12 +229,10 @@
             <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
                     <ul>
-                        <li><a href="NuevaVenta.jsp" class="botonNav">Nueva Venta</a></li>
-                        <li><a href=".html" class="botonNav">Registro de venta </a></li>
-                        <li><a href=".html" class="botonNav">lista de venta</a></li>
+                        <li><a href="NuevaVenta.html" class="botonNav">Nueva Venta</a></li>
+                        <li><a href="ListaVentas.jsp" class="botonNav">lista de venta</a></li>
                     </ul>
 
-                </li>
                 <li><a href="" class="botonNav">Provedores</a>
                 <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
@@ -264,7 +262,7 @@
                 </ul>
 
                 </li>
-            </ul>        
+        </ul>       
 
         </div>
         <br>
@@ -282,26 +280,26 @@
                  <%
                      
           Producto producto = (Producto)request.getAttribute("producto");
-           if(producto != null){
-               
+           if(producto != null){  
+               System.out.println(producto);
                int id = producto.getId();
                String decripcion = producto.getDescripcion();
                int cantidad  = producto.getCantidad();
                int valor = producto.getValor();
         %>   
           <br>
-        <table style="position:absolute;top:200px;left:600px ">
+        <table border="2px">
             <tr>
-               <td>Id</td>
-               <td>descripcion</td> 
-               <td>cantidad</td>
-               <td>valor</td> 
+               <td WIDTH="320">Id</td>
+               <td WIDTH="320">descripcion</td> 
+               <td WIDTH="320">cantidad</td>
+               <td WIDTH="320">valor</td> 
             </tr>
             <tr>
-               <td><%=id%></td>
-               <td><%=decripcion%></td>
-               <td><%=cantidad%></td>
-               <td><%=valor%></td> 
+               <td WIDTH="320"><%=id%></td>
+               <td WIDTH="320"><%=decripcion%></td>
+               <td WIDTH="320"><%=cantidad%></td>
+               <td WIDTH="320"><%=valor%></td> 
         </tr>
         </table>
         

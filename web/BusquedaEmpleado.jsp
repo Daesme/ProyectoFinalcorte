@@ -1,6 +1,6 @@
 
 
-<%@page import="controlador.EmpleadoDao"%>
+<%@page import="controlador.EmpleadosDAO"%>
 <%@page import="Modelo.Empleado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -229,12 +229,10 @@
             <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
                     <ul>
-                        <li><a href="NuevaVenta.jsp" class="botonNav">Nueva Venta</a></li>
-                        <li><a href=".html" class="botonNav">Registro de venta </a></li>
-                        <li><a href=".html" class="botonNav">lista de venta</a></li>
+                        <li><a href="NuevaVenta.html" class="botonNav">Nueva Venta</a></li>
+                        <li><a href="ListaVentas.jsp" class="botonNav">lista de venta</a></li>
                     </ul>
 
-                </li>
                 <li><a href="" class="botonNav">Provedores</a>
                 <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
@@ -264,7 +262,7 @@
                 </ul>
 
                 </li>
-            </ul>        
+        </ul>        
 
         </div>
         <br>
@@ -280,27 +278,28 @@
                     <input name="Buscar" type="submit">
                 </form>
                  <%
-         Empleado empdo = (Empleado)request.getAttribute("empleado");
-           if(empdo != null){
-               EmpleadoDao empleado = new EmpleadoDao();
-               empleado.ListarUnitario(empdo.getCodigo());
-               int id = empleado.codigo;
-               String nombre = empleado.nuevo1;
-               int dura = empleado.dur;
+           Empleado pro2 = (Empleado)request.getAttribute("empleado");
+           if(pro2 != null){
+               int codigo = pro2.getCodigo();
+               String nombre = pro2.getNombre();
+               int duracion = pro2.getDuracion();
+               int pago = pro2.getPago(); 
              
         %>   
           <br>
-        <table style="position:absolute;top:200px;left:600px ">
+        <table border="2px">
             <tr>
-               <td>Codigo</td>
-               <td>Nombre</td> 
-               <td>Duracion</td>
+               <td WIDTH="320">Codigo</td>
+               <td WIDTH="320">Nombre</td> 
+               <td WIDTH="320">Duracion</td>
+               <td WIDTH="320">Pago</td>
               
             </tr>
             <tr>
-               <td><%=id%></td>
-               <td><%=nombre%></td>
-               <td><%=dura%></td>
+               <td WIDTH="320"><%=codigo%></td>
+               <td WIDTH="320"><%=nombre%></td>
+               <td WIDTH="320"><%=duracion%></td>
+               <td WIDTH="320"><%=pago%></td>
                
         </tr>
         </table>

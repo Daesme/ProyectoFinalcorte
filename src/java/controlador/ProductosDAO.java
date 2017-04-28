@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.Conexion;
 
 /**
@@ -101,22 +103,19 @@ public class ProductosDAO {
             String query = "SELECT * FROM Producto where idproducto = ?";
             PreparedStatement statement
                 = this.conexion.prepareStatement(query);
-
             statement.setInt(1, id);
-            Statement st = this.conexion.createStatement();
-
-            ResultSet rs = st.executeQuery(query);
-
+            ResultSet rs = statement.executeQuery();
+            
             if (rs.next()) {
                 int codigoProveedor = rs.getInt("idproducto");
                 String Nombre = rs.getString("descripcion");
                 int Apellido = rs.getInt("cantidad");
                 int tel = rs.getInt("valor");
-                System.out.format("%s, %s, %s, $s\n", codigoProveedor, Nombre, Apellido, tel);
                 pro = new Producto(codigoProveedor, Nombre, Apellido, tel);
             }
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
+             Logger.getLogger(ProductosDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return pro;
     }

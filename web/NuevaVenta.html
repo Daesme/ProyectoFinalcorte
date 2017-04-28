@@ -1,21 +1,9 @@
-<%-- 
-    Document   : NuevaVenta
-    Created on : 26/04/2017, 10:38:52 AM
-    Author     : Labing
---%>
-
-<%@page import="Modelo.Ventas"%>
-<%@page import="controlador.VentasDAO"%>
-<%@page import="java.util.LinkedList"%>
-<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<%@page import="Modelo.Producto"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html lang="en">
     <head>
@@ -242,12 +230,10 @@ and open the template in the editor.
             <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
                     <ul>
-                        <li><a href="NuevaVenta.jsp" class="botonNav">Nueva Venta</a></li>
-                        <li><a href=".html" class="botonNav">Registro de venta </a></li>
-                        <li><a href=".html" class="botonNav">lista de venta</a></li>
+                        <li><a href="NuevaVenta.html" class="botonNav">Nueva Venta</a></li>
+                        <li><a href="ListaVentas.jsp" class="botonNav">lista de venta</a></li>
                     </ul>
 
-                </li>
                 <li><a href="" class="botonNav">Provedores</a>
                 <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
@@ -277,7 +263,7 @@ and open the template in the editor.
                 </ul>
 
                 </li>
-            </ul>        
+        </ul>        
 
         </div>
         <br>
@@ -287,7 +273,7 @@ and open the template in the editor.
 
     <body >
                <div style="text-align: center;">
-                   <form method="get" action="NuevaVenta" name="NuevaVenta">
+                   <form method="get" action="ventas" name="NuevaVenta">
      
             <FONT FACE="impact" SIZE="10" COLOR="black"> Nueva Venta </FONT><br>
             <br>
@@ -308,46 +294,7 @@ and open the template in the editor.
             
 
 
-        <div style="text-align: center;">
-           
-                <FONT FACE="impact" SIZE="6" COLOR="black"> Ventas </FONT><br>
-                
-                    <tr>
-                        <td WIDTH="320">ID Factura</td>
-                        <td WIDTH="320">Id Producto</td> 
-                        <td WIDTH="320">Id Empleado</td>
-                        <td WIDTH="320" >Valor</td> 
-                    </tr>
-
-
-                    <%
-                       LinkedList<Ventas> a =new LinkedList <Ventas>();
-                int Idf ;
-                int Idp;
-                int Ide;
-                int valor;
-                
-               VentasDAO lis=new VentasDAO();
-               a=lis.Listar();
-               for(int i=0; i<a.size();i++){
-               Idf=a.get(i).getIdFactura();
-               Idp=a.get(i).getIdProducto();
-               Ide=a.get(i).getIdEmpleado();
-               valor=a.get(i).getValor();             
-                      
-                    %>  
-                <br>
-               <tr>
-               <td WIDTH="320"><%=Idf%></td>
-               <td WIDTH="320"><%=Idp%></td>
-               <td WIDTH="320"><%=Ide%></td>
-               <td WIDTH="320"><%=valor%></td> 
-        </tr>
-        
-               <%
-               } 
-                   
-        %>     
+             
                       
                 <br>
 

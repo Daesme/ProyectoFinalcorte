@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class BusquedaProvedores extends HttpServlet {
 
+    ProvedorDAO dao;
+    Provedor pro;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,10 +36,9 @@ public class BusquedaProvedores extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String id = request.getParameter("id");
-            ProvedorDAO dao=new ProvedorDAO();
-            Provedor pro = null;
-            pro = dao.Buscar(Integer.parseInt(id));
+            int id = Integer.valueOf(request.getParameter("id"));
+            dao=new ProvedorDAO();
+            pro = dao.Buscar(id);
             
             RequestDispatcher dispacher =request.getRequestDispatcher("BusquedaProvedor.jsp");
             
@@ -84,69 +85,4 @@ public class BusquedaProvedores extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-//package Controlador;
-//
-//import DAO.DaoElementos;
-//import Modelo.Elemento;
-//import java.io.IOException;
-//import java.io.PrintWriter;
-//import javax.servlet.RequestDispatcher;
-//import javax.servlet.ServletException;
-//import javax.servlet.http.HttpServlet;
-//import javax.servlet.http.HttpServletRequest;
-//import javax.servlet.http.HttpServletResponse;
-//
-//public class BuscarElemento extends HttpServlet {
-//
-//    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        response.setContentType("text/html;charset=UTF-8");
-//        try (PrintWriter out = response.getWriter()) {
-//
-//        }
-//    }
-//
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        
-//        //Buscar Por nombre
-//        String parametro = request.getParameter("Buscar");
-//
-//        Elemento elm = new Elemento();
-//        //1. Crear instancia del DAO        
-//        DaoElementos daoE = new DaoElementos();
-//        //Lista todos los elementos.
-//        elm = daoE.buscarPorNombre(parametro);
-//        //2. Envio de los datos por el request.
-//        request.setAttribute("etiqueta", elm);
-//        //3. RequestDispacher
-//        RequestDispatcher rd = request.getRequestDispatcher("BuscarElemento.jsp");
-//        rd.forward(request, response);
-//    }
-//
-//    @Override
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        //Buscar por etiqueta
-//        String parametro = request.getParameter("Buscar");
-//
-//        Elemento elm = new Elemento();
-//
-//        DaoElementos daoE = new DaoElementos();
-//
-//        elm = daoE.buscar(Integer.parseInt(parametro));
-//
-//        request.setAttribute("etiqueta", elm);
-//        //3. RequestDispacher
-//        RequestDispatcher rd = request.getRequestDispatcher("BuscarElemento.jsp");
-//        rd.forward(request, response);
-//    }
-//
-//    @Override
-//    public String getServletInfo() {
-//        return "Short description";
-//    }// </editor-fold>
-//
-//}
 }

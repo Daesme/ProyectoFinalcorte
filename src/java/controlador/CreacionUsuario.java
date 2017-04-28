@@ -14,13 +14,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
 
 /**
  *
- * @author user7
+ * @author crist
  */
-public class ventas extends HttpServlet {
+public class CreacionUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,15 +35,7 @@ public class ventas extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ventas</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ventas at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            
         }
     }
 
@@ -61,22 +52,16 @@ public class ventas extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        String nombre = request.getParameter("Usuario");
+        int contra = Integer.valueOf(request.getParameter("Contraseña"));
         
-        int idF= Integer.valueOf(request.getParameter("IDProvedor"));
-        int idP= Integer.valueOf(request.getParameter("IdProducto"));
-        int idE= Integer.valueOf(request.getParameter("IdEmpleado"));
-        int valor= Integer.valueOf(request.getParameter("Valor"));
-        
-        
-                VentasDAO c=new VentasDAO();
+        UsuariosDAO usu = new UsuariosDAO();
+        response.sendRedirect("IngresoUsuarios.jsp");
         try {
-            c.Insetar(idF, idP, idE, valor);
+            usu.Insetar(nombre,contra);
         } catch (SQLException ex) {
-            Logger.getLogger(ventas.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreacionUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-                    
-      
     }
 
     /**
@@ -104,4 +89,3 @@ public class ventas extends HttpServlet {
     }// </editor-fold>
 
 }
-

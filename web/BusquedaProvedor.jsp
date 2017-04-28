@@ -233,12 +233,10 @@
            <ul class="navi" >              
                 <li><a id="programas"  class="botonNav"   >Ventas</a>
                     <ul>
-                        <li><a href="NuevaVenta.jsp" class="botonNav">Nueva Venta</a></li>
-                        <li><a href=".html" class="botonNav">Registro de venta </a></li>
-                        <li><a href=".html" class="botonNav">lista de venta</a></li>
+                        <li><a href="NuevaVenta.html" class="botonNav">Nueva Venta</a></li>
+                        <li><a href="ListaVentas.jsp" class="botonNav">lista de venta</a></li>
                     </ul>
 
-                </li>
                 <li><a href="" class="botonNav">Provedores</a>
                 <ul>
                         <li><a href="NuevoProvedor.html" class="botonNav">Nuevo Provedor</a></li>
@@ -268,7 +266,7 @@
                 </ul>
 
                 </li>
-            </ul>        
+        </ul>        
 
         </div>
         <br>
@@ -284,26 +282,26 @@
                     <input name="Buscar" type="submit">
                 </form>
                  <%
-          Provedor pro = (Provedor)request.getAttribute("provedor");
-           if(pro != null){
-               int id = pro.getId();
-               String nombre = pro.getNombre();
-               String apellido = pro.getApellido();
-               int tel = pro.getTelefono();            
+          Provedor pro2 = (Provedor)request.getAttribute("provedor");
+           if(pro2 != null){
+               int id = pro2.getId();
+               String nombre = pro2.getNombre();
+               String apellido = pro2.getApellido();
+               int tel = pro2.getTelefono();            
         %>   
           <br>
-        <table style="position:absolute;top:200px;left:600px ">
+        <table border="2px">
             <tr>
-               <td>Id</td>
-               <td>Nombre</td> 
-               <td>Apellido</td>
-               <td>Telefono</td> 
+               <td WIDTH="320">Id</td>
+               <td WIDTH="320">Nombre</td> 
+               <td WIDTH="320">Apellido</td>
+               <td WIDTH="320">Telefono</td> 
             </tr>
             <tr>
-               <td><%=id%></td>
-               <td><%=nombre%></td>
-               <td><%=apellido%></td>
-               <td><%=tel%></td> 
+               <td WIDTH="320"><%=id%></td>
+               <td WIDTH="320"><%=nombre%></td>
+               <td WIDTH="320"><%=apellido%></td>
+               <td WIDTH="320"><%=tel%></td> 
         </tr>
         </table>
         
