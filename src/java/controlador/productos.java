@@ -63,6 +63,7 @@ public class productos extends HttpServlet {
         ProductosDAO s = new ProductosDAO();
         try {
             s.Insetar(id, nombre2, cantidad, valor);
+            response.sendRedirect("Ingresodeproductos.html");
         } catch (SQLException ex) {
             Logger.getLogger(productos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -83,12 +84,8 @@ public class productos extends HttpServlet {
         int codigo = Integer.valueOf(request.getParameter("idproductos"));
         ProductosDAO c = new ProductosDAO();
         c.Borrar(codigo);
-
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(productos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        response.sendRedirect("BorrarProducto.html");
+        
     }
 
     /**

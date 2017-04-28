@@ -61,6 +61,7 @@ public class provedores extends HttpServlet {
         ProvedorDAO e = new ProvedorDAO();
         try {
             e.Insetar(id, nombre2, apellido2, tel);
+            response.sendRedirect("NuevoProvedor.html");
         } catch (SQLException ex) {
             Logger.getLogger(provedores.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -81,12 +82,8 @@ public class provedores extends HttpServlet {
         int idborrar= Integer.valueOf(request.getParameter("idprv"));
         ProvedorDAO d=new ProvedorDAO();
         d.Borrar(idborrar);
+        response.sendRedirect("BorrarProvedor.html");
         
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(provedores.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**

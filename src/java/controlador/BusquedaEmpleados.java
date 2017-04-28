@@ -42,7 +42,6 @@ protected void processRequest(HttpServletRequest request, HttpServletResponse re
             emp = empDAO.Buscar(Integer.parseInt(codigo));
             System.out.println(emp);
             RequestDispatcher dispacher =request.getRequestDispatcher("BusquedaEmpleado.jsp");
-            
             request.setAttribute("empleado", emp);
             dispacher.forward(request, response);
         }

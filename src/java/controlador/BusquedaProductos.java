@@ -44,7 +44,6 @@ public class BusquedaProductos extends HttpServlet {
             pro = c.Buscar(codigo);
 
             RequestDispatcher dispacher = request.getRequestDispatcher("BusquedaProductos.jsp");
-
             request.setAttribute("producto", pro);
             dispacher.forward(request, response);
             

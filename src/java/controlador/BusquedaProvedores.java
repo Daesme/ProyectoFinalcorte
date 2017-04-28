@@ -41,7 +41,6 @@ public class BusquedaProvedores extends HttpServlet {
             pro = dao.Buscar(id);
             
             RequestDispatcher dispacher =request.getRequestDispatcher("BusquedaProvedor.jsp");
-            
             request.setAttribute("provedor", pro);
             dispacher.forward(request, response);
         }

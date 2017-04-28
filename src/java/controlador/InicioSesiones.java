@@ -20,8 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class InicioSesiones extends HttpServlet {
 
-    UsuariosDAO usu;
-    Usuarios usuario;
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -55,7 +54,8 @@ public class InicioSesiones extends HttpServlet {
             throws ServletException, IOException {
         String nombre = request.getParameter("uname");
         int psw = Integer.parseInt(request.getParameter("psw"));
-
+        UsuariosDAO usu =new UsuariosDAO();
+        Usuarios usuario;
         usuario = usu.Buscar(nombre);
         System.out.println(usu);
 

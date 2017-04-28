@@ -28,7 +28,7 @@ public class VentasDAO {
 
     public void Insetar(int idF, int  idP, int idE, int VALOR) throws SQLException {
 
-        String query = " insert into ventas (IdFactura,Idproducto,Idempleado,Cantidad)"
+        String query = " insert into ventas (IdFactura,Idproducto,Idempledo,Cantidad)"
                 + " values (?, ?, ?, ?)";
 
         PreparedStatement statement= this.conexion.prepareStatement(query);
@@ -62,7 +62,7 @@ public class VentasDAO {
             while (rs.next()) {
                 int idfa = rs.getInt("IdFactura");
                 int idpr = rs.getInt("Idproducto");
-                int idemp = rs.getInt("Idempleado");
+                int idemp = rs.getInt("Idempledo");
                 int valor = rs.getInt("Cantidad");
 
                 Ventas ve = new Ventas(idfa, idemp, idpr, valor);

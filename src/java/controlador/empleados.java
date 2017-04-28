@@ -62,6 +62,8 @@ public class empleados extends HttpServlet {
         EmpleadosDAO d = new EmpleadosDAO();
         try {
             d.Insetar(codigo, nombre2, dur, pago);
+            response.sendRedirect("EmpleadoNuevo.html");
+
         } catch (SQLException ex) {
             Logger.getLogger(empleados.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -83,12 +85,8 @@ public class empleados extends HttpServlet {
         int codigo = Integer.valueOf(request.getParameter("idemp"));
         EmpleadosDAO c = new EmpleadosDAO();
         c.Borrar(codigo);
-        
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(empleados.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            response.sendRedirect("BorrarEmpleado.html");
+       
     }
 
     /**

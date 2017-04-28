@@ -53,8 +53,11 @@ public class RecuperarContraseña extends HttpServlet {
         int contra = Integer.valueOf(request.getParameter("RecuperarContraseña"));
         
         UsuariosDAO usu = new UsuariosDAO();
+ 
         
         usu.ActualizarU(nombre, contra);
+        response.sendRedirect("IngresoUsuarios.jsp");
+ 
     }
 
     /**

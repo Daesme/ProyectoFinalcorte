@@ -71,6 +71,7 @@ public class ventas extends HttpServlet {
                 VentasDAO c=new VentasDAO();
         try {
             c.Insetar(idF, idP, idE, valor);
+            response.sendRedirect("NuevaVenta.html");
         } catch (SQLException ex) {
             Logger.getLogger(ventas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -91,6 +92,7 @@ public class ventas extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
     }
 
     /**

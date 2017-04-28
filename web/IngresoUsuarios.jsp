@@ -77,7 +77,7 @@ span.psw {
 
 <form method="get" action="InicioSesiones" name="InicioSesiones">
   <div class="imgcontainer">
-    <img src="Sesion.png" alt="Avatar" class="avatar">
+    <img  style="width: 162px; height: 165px;" src="Imagenes/emp.jpg" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">
