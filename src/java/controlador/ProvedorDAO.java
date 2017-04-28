@@ -28,8 +28,8 @@ public class ProvedorDAO {
         this.conexion = db.getConnection();
     }
 
-    public boolean Insetar(int idP, String Nombre, String apellido, int tel) throws SQLException {
-boolean resultado = false;
+    public void Insetar(int idP, String Nombre, String apellido, int tel) throws SQLException {
+
         String query = " insert into Proveedor (idProvedor,ProvedorName,ProveedorAp,tel)"
                 + " values (?, ?, ?, ?)";
 
@@ -41,11 +41,11 @@ boolean resultado = false;
             statement.setString(3, apellido);
             statement.setInt(4, tel);
             statement.execute();
-resultado = statement.execute();
+             statement.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return resultado;
+        
     }
 
     public LinkedList<Provedor> Listar() {

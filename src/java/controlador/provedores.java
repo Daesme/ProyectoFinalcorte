@@ -36,14 +36,7 @@ public class provedores extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            int id = Integer.valueOf(request.getParameter("IDProvedor"));
-            String nombre2 = request.getParameter("NombreProvedor");
-            String apellido2 = request.getParameter("ApellidoProvedor");
-            int tel = Integer.valueOf(request.getParameter("Telefono"));
-
-            /* TODO output your page here. You may use following sample code. */
-            ProvedorDAO e=new ProvedorDAO();
-            e.Insetar(id,nombre2,apellido2,tel);
+            
         }
     }
 
@@ -59,8 +52,15 @@ public class provedores extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.valueOf(request.getParameter("IDProvedor"));
+            String nombre2 = request.getParameter("NombreProvedor");
+            String apellido2 = request.getParameter("ApellidoProvedor");
+            int tel = Integer.valueOf(request.getParameter("Telefono"));
+
+            /* TODO output your page here. You may use following sample code. */
+            ProvedorDAO e=new ProvedorDAO();
         try {
-            processRequest(request, response);
+            e.Insetar(id,nombre2,apellido2,tel);
         } catch (SQLException ex) {
             Logger.getLogger(provedores.class.getName()).log(Level.SEVERE, null, ex);
         }

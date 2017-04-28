@@ -294,13 +294,13 @@ and open the template in the editor.
             
                    
                       <%
-               LinkedList<Producto> a =new LinkedList <>();
+               LinkedList<Producto> a =new LinkedList <Producto>();
                int id ;
                String Descripcion;
                int cantidad;
                int precio;
                ProductosDAO lis=new ProductosDAO();
-               a=lis.ListarA();
+               a=lis.Listar();
                for(int i=0; i<a.size();i++){
                id=a.get(i).getId();
                Descripcion=a.get(i).getDescripcion();

@@ -1,6 +1,6 @@
 
 
-<%@page import="controlador.ProductoDao"%>
+<%@page import="controlador.ProductosDAO"%>
 <%@page import="Modelo.Producto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -280,14 +280,14 @@
                     <input name="Buscar" type="submit">
                 </form>
                  <%
+                     
           Producto producto = (Producto)request.getAttribute("producto");
            if(producto != null){
-               ProductoDao prd = new ProductoDao();
-               prd.ListarUnitario(producto.getId());
-               int id = prd.id;
-               String decripcion = prd.nuevo1;
-               int cantidad  = prd.nuevo2;
-               int valor = prd.ext;
+               
+               int id = producto.getId();
+               String decripcion = producto.getDescripcion();
+               int cantidad  = producto.getCantidad();
+               int valor = producto.getValor();
         %>   
           <br>
         <table style="position:absolute;top:200px;left:600px ">
@@ -308,6 +308,7 @@
         <%
            }
         %>
+        
             </div>
         </body>
         <br>

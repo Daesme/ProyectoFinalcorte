@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import Modelo.Producto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -36,14 +37,7 @@ public class BusquedaProductos extends HttpServlet {
           
       
             /* TODO output your page here. You may use following sample code. */         
-            String codigo = request.getParameter("id");
-            Modelo.Producto pro = new Modelo.Producto(Integer.parseInt(codigo),null,0,0);
-            
-            RequestDispatcher dispacher =request.getRequestDispatcher("BusquedaProductos.jsp");
-            
-            request.setAttribute("producto", pro);
-            dispacher.forward(request, response);
-        }
+                   }
     }
 
         
@@ -62,6 +56,15 @@ public class BusquedaProductos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        int codigo = Integer.valueOf(request.getParameter("id"));
+           
+            ProductosDAO c=new ProductosDAO();
+           Producto pro= c.Buscar(codigo);
+            RequestDispatcher dispacher =request.getRequestDispatcher("BusquedaProductos.jsp");
+            
+            request.setAttribute("producto", pro);
+            dispacher.forward(request, response);
+ 
     }
 
     /**

@@ -4,6 +4,9 @@
     Author     : Labing
 --%>
 
+<%@page import="Modelo.Ventas"%>
+<%@page import="controlador.VentasDAO"%>
+<%@page import="java.util.LinkedList"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <!--
@@ -283,28 +286,32 @@ and open the template in the editor.
 
 
     <body >
-        <div style="text-align: center;">
+               <div style="text-align: center;">
+                   <form method="get" action="NuevaVenta" name="NuevaVenta">
+     
             <FONT FACE="impact" SIZE="10" COLOR="black"> Nueva Venta </FONT><br>
             <br>
             <img style="width: 218px; height: 218px;"src="Imagenes/NuevaVenta.png"><br>
             <br>ID Factura:<input name="IDProvedor">
             <br>
             <br>
-            Id Producto: <input name="Id Producto"><br>
+            Id Producto: <input name="IdProducto"><br>
             <br>
-            Id Empleado: <input name="Id Empleado"><br>
+            Id Empleado: <input name="IdEmpleado"><br>
             <br>
             Valor :<input name="Valor"><br>
             <br>
             <input name="Enviar" type="submit">
-        </div>
+        </form>
+            </div>
 
+            
 
 
         <div style="text-align: center;">
-            <form method="get" action="BuscarProducto" name="BuscarProducto">
+           
                 <FONT FACE="impact" SIZE="6" COLOR="black"> Ventas </FONT><br>
-                <table border="2px"  >
+                
                     <tr>
                         <td WIDTH="320">ID Factura</td>
                         <td WIDTH="320">Id Producto</td> 
@@ -314,23 +321,36 @@ and open the template in the editor.
 
 
                     <%
-
+                       LinkedList<Ventas> a =new LinkedList <Ventas>();
+                int Idf ;
+                int Idp;
+                int Ide;
+                int valor;
+                
+               VentasDAO lis=new VentasDAO();
+               a=lis.Listar();
+               for(int i=0; i<a.size();i++){
+               Idf=a.get(i).getIdFactura();
+               Idp=a.get(i).getIdProducto();
+               Ide=a.get(i).getIdEmpleado();
+               valor=a.get(i).getValor();             
+                      
                     %>  
-                    <br>
-                    <tr>
-                        <td WIDTH="320"><%%></td>
-                        <td WIDTH="320"><%%></td>
-                        <td WIDTH="320"><%%></td>
-                        <td WIDTH="320"><%%></td> 
-                    </tr>
-
-                    <%                   }
-
-                    %>   
-                </table>      
+                <br>
+               <tr>
+               <td WIDTH="320"><%=Idf%></td>
+               <td WIDTH="320"><%=Idp%></td>
+               <td WIDTH="320"><%=Ide%></td>
+               <td WIDTH="320"><%=valor%></td> 
+        </tr>
+        
+               <%
+               } 
+                   
+        %>     
+                      
                 <br>
 
-            </form>
     </body>
 
     <br>

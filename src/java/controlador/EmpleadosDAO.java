@@ -29,13 +29,13 @@ public class EmpleadosDAO {
 
     public void Insetar(int idP, String Nombre, int apellido, int tel) throws SQLException {
 
+        try {
         String query = " insert into Empleado (idEmpleado,empleadoName,duracion,pago)"
                 + " values (?, ?, ?, ?)";
 
-        PreparedStatement statement
-                = this.conexion.prepareStatement(query);
+        PreparedStatement statement= this.conexion.prepareStatement(query);
 
-        try {
+        
             statement.setInt(1, idP);
             statement.setString(2, Nombre);
             statement.setInt(3, apellido);
